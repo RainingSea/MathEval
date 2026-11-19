@@ -32,6 +32,29 @@ docker pull python:3.12-slim-bookworm
 
 第一步在随附的 PFR 和 TLB 源码目录中分别执行 `lake exe cache get` 和 `lake build`，获取锁定版本的 Mathlib 缓存并编译项目。第二步根据逐题清单校验项目模块，以硬链接生成每题的 `lib/`，并写出含本机评分路径的 `dataset.jsonl`。镜像构建和后面的启动器都自动读取已导出的 `RLMEVAL_DEPS`。换终端时，请重新导出该目录的绝对路径和 `PYTHON_BIN`。
 
+## 生成方式与采样配置
+
+| 生成方式 | 入口 | 模型服务配置 |
+|---|---|---|
+| Codex | Docker 启动器，`BACKEND=codex` | `MODEL`、`OPENAI_BASE_URL`、`OPENAI_API_KEY`，使用 Responses 接口 |
+| Claude Code | Docker 启动器，`BACKEND=claude` | `MODEL`、`ANTHROPIC_BASE_URL`、`ANTHROPIC_API_KEY` 或 `ANTHROPIC_AUTH_TOKEN` |
+
+**裸模型**使用宿主机脚本 `RLMEVAL-ADAPT/start-direct.sh`。安装本仓库的 `requirements.txt` 并准备好前述宿主机依赖和逐题数据后，在本 README 所在目录运行：
+
+```bash
+export MODEL=deepseek-v4.1-flash
+export OPENAI_BASE_URL=https://token.pjlab.org.cn/v1
+read -rsp 'API key: ' OPENAI_API_KEY; echo
+export OPENAI_API_KEY
+INDICES=1 SAMPLES=1 CONCURRENCY=1 ./RLMEVAL-ADAPT/start-direct.sh
+```
+
+裸模型使用 OpenAI 兼容的 Chat Completions API。启动器依次生成、评分、汇总，在 `RLMEVAL-ADAPT/runs/direct-*/` 下保存 `generations.jsonl`、`scores.jsonl`、`summary.json` 和 `summary.md`。配置集中在脚本顶部，同名环境变量优先。`SAMPLES` 是每题采样数，`CONCURRENCY` 是全批次同时生成的样本数，`MAX_OUTPUT_TOKENS` 是单次请求的输出上限。
+
+Docker 示例：在启动前执行 `export INDICES=10,146 SAMPLES=4 CONCURRENCY=2 TMO=21600`。两个题目最多同时运行两个容器，每题在自己的容器中顺序生成 4 个样本，共 8 个候选；每个样本的超时为 21600 秒。
+
+**逐题 pass@k** 由 `SAMPLES=k` 指定采样次数。该题的 k 个候选中至少一个通过评分，即记为该题通过。汇总中的 `observed_pass_at_k_rate` 是通过题数占汇总题数的比例。`CONCURRENCY` 控制同时运行的题数，不改变 k。
+
 ## 预检与正式评测
 
 先设置本轮题号。预检只编译初始候选，不调用模型；正式评测沿用同一个 `INDICES`。
