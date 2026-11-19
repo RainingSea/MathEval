@@ -1,0 +1,6 @@
+# Host-side Docker orchestration and proof scoring (Python 3.11)
+jsonlines==4.0.0
+PyYAML==6.0.3
+lean-interact==0.5.3
+nltk==3.10.3
+rich==15.0.0

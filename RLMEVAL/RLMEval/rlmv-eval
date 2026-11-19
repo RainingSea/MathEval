@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+repo_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+export PYTHONPATH="$repo_dir/src:$repo_dir${PYTHONPATH:+:$PYTHONPATH}"
+exec "${RLMEVAL_PYTHON:-/root/miniconda3/envs/rlmeval/bin/python}" -m rlm_agent.cli "$@"

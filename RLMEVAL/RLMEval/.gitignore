@@ -1,0 +1,37 @@
+# Python related
+*.egg-info
+__pycache__
+.venv
+
+# Lean related
+*.lake
+
+# Ignore traced repositories
+traced_repos
+
+# Cache
+.cache
+
+# Results
+results
+
+# Experiment outputs (generations/scores/logs and agent scratch workspaces)
+artifacts
+agent_workspaces
+
+# Test outputs
+.test_output
+
+# Local API credentials (*.secret.env stays ignored; secret.txt is now a template)
+*.secret.env
+
+# Real credentials - never commit (added 2026-10-30 local git policy)
+secret.txt
+secret.txt.bak-*
+
+# Adapter copies for VSCode viewing only (c2r.py embeds the real API key;
+# runtime originals live in ../apiAdapt - added 2026-10-31)
+/c2r.py
+/a2r.py
+# Classmate experiment area (contains embedded traced-repo clone)
+archon-test/

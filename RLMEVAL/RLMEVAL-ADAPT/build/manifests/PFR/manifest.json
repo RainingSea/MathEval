@@ -1,0 +1,1311 @@
+{
+  "task_count": 144,
+  "repos": {
+    "PFR": 144
+  },
+  "tasks": [
+    {
+      "index": 1,
+      "repo": "PFR",
+      "name": "sum_mul_log_div_leq",
+      "label": "log-sum",
+      "file": "PFR/Mathlib/Analysis/SpecialFunctions/NegMulLog.lean",
+      "directory": "tasks/PFR/1",
+      "dependency_modules": 0
+    },
+    {
+      "index": 2,
+      "repo": "PFR",
+      "name": "sum_mul_log_div_eq_iff",
+      "label": "converse-log-sum",
+      "file": "PFR/Mathlib/Analysis/SpecialFunctions/NegMulLog.lean",
+      "directory": "tasks/PFR/2",
+      "dependency_modules": 0
+    },
+    {
+      "index": 3,
+      "repo": "PFR",
+      "name": "IsUniform.entropy_eq",
+      "label": "uniform-entropy",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/3",
+      "dependency_modules": 19
+    },
+    {
+      "index": 4,
+      "repo": "PFR",
+      "name": "IsUniform.entropy_eq",
+      "label": "uniform-entropy-II",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/4",
+      "dependency_modules": 19
+    },
+    {
+      "index": 5,
+      "repo": "PFR",
+      "name": "prob_ge_exp_neg_entropy",
+      "label": "bound-conc",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/5",
+      "dependency_modules": 19
+    },
+    {
+      "index": 6,
+      "repo": "PFR",
+      "name": "mutualInfo_nonneg",
+      "label": "mutual-nonneg",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/6",
+      "dependency_modules": 19
+    },
+    {
+      "index": 7,
+      "repo": "PFR",
+      "name": "entropy_pair_le_add",
+      "label": "subadditive",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/7",
+      "dependency_modules": 19
+    },
+    {
+      "index": 8,
+      "repo": "PFR",
+      "name": "condEntropy_le_entropy",
+      "label": "cond-reduce",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/8",
+      "dependency_modules": 19
+    },
+    {
+      "index": 9,
+      "repo": "PFR",
+      "name": "entropy_triple_add_entropy_le",
+      "label": "alt-submodularity",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/9",
+      "dependency_modules": 19
+    },
+    {
+      "index": 10,
+      "repo": "PFR",
+      "name": "mutualInfo_eq_zero",
+      "label": "vanish-entropy",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/10",
+      "dependency_modules": 19
+    },
+    {
+      "index": 11,
+      "repo": "PFR",
+      "name": "entropy_pair_eq_add",
+      "label": "add-entropy",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/11",
+      "dependency_modules": 19
+    },
+    {
+      "index": 12,
+      "repo": "PFR",
+      "name": "condMutualInfo_nonneg",
+      "label": "conditional-nonneg",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/12",
+      "dependency_modules": 19
+    },
+    {
+      "index": 13,
+      "repo": "PFR",
+      "name": "condMutualInfo_eq_zero",
+      "label": "conditional-vanish",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/13",
+      "dependency_modules": 19
+    },
+    {
+      "index": 14,
+      "repo": "PFR",
+      "name": "ent_of_cond_indep",
+      "label": "cond-trial-ent",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/14",
+      "dependency_modules": 19
+    },
+    {
+      "index": 15,
+      "repo": "PFR",
+      "name": "IdentDistrib.entropy_eq",
+      "label": "copy-ent",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/15",
+      "dependency_modules": 19
+    },
+    {
+      "index": 17,
+      "repo": "PFR",
+      "name": "rdist_zero_eq_half_ent",
+      "label": "dist-zero",
+      "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "directory": "tasks/PFR/17",
+      "dependency_modules": 28
+    },
+    {
+      "index": 18,
+      "repo": "PFR",
+      "name": "ProbabilityTheory.IdentDistrib.rdist_eq",
+      "label": "ruz-copy",
+      "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "directory": "tasks/PFR/18",
+      "dependency_modules": 28
+    },
+    {
+      "index": 19,
+      "repo": "PFR",
+      "name": "ProbabilityTheory.IndepFun.rdist_eq",
+      "label": "ruz-indep",
+      "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "directory": "tasks/PFR/19",
+      "dependency_modules": 28
+    },
+    {
+      "index": 20,
+      "repo": "PFR",
+      "name": "rdist_symm",
+      "label": "ruzsa-symm",
+      "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "directory": "tasks/PFR/20",
+      "dependency_modules": 28
+    },
+    {
+      "index": 21,
+      "repo": "PFR",
+      "name": "diff_ent_le_rdist",
+      "label": "ruzsa-diff",
+      "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "directory": "tasks/PFR/21",
+      "dependency_modules": 28
+    },
+    {
+      "index": 22,
+      "repo": "PFR",
+      "name": "rdist_nonneg",
+      "label": "ruzsa-nonneg",
+      "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "directory": "tasks/PFR/22",
+      "dependency_modules": 28
+    },
+    {
+      "index": 23,
+      "repo": "PFR",
+      "name": "ent_of_proj_le",
+      "label": "dist-projection",
+      "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "directory": "tasks/PFR/23",
+      "dependency_modules": 28
+    },
+    {
+      "index": 24,
+      "repo": "PFR",
+      "name": "ent_of_diff_le",
+      "label": "ruzsa-triangle-improved",
+      "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "directory": "tasks/PFR/24",
+      "dependency_modules": 28
+    },
+    {
+      "index": 25,
+      "repo": "PFR",
+      "name": "rdist_triangle",
+      "label": "ruzsa-triangle",
+      "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "directory": "tasks/PFR/25",
+      "dependency_modules": 28
+    },
+    {
+      "index": 26,
+      "repo": "PFR",
+      "name": "kaimanovich_vershik",
+      "label": "kv",
+      "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "directory": "tasks/PFR/26",
+      "dependency_modules": 28
+    },
+    {
+      "index": 27,
+      "repo": "PFR",
+      "name": "condIndep_copies",
+      "label": "cond-indep-exist",
+      "file": "PFR/ForMathlib/ConditionalIndependence.lean",
+      "directory": "tasks/PFR/27",
+      "dependency_modules": 8
+    },
+    {
+      "index": 28,
+      "repo": "PFR",
+      "name": "ent_bsg",
+      "label": "entropic-bsg",
+      "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "directory": "tasks/PFR/28",
+      "dependency_modules": 28
+    },
+    {
+      "index": 29,
+      "repo": "PFR",
+      "name": "condRuzsaDist_diff_ofsum_le",
+      "label": "second-useful",
+      "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "directory": "tasks/PFR/29",
+      "dependency_modules": 28
+    },
+    {
+      "index": 30,
+      "repo": "PFR",
+      "name": "sub_mem_symmGroup",
+      "label": "zero-large",
+      "file": "PFR/HundredPercent.lean",
+      "directory": "tasks/PFR/30",
+      "dependency_modules": 29
+    },
+    {
+      "index": 31,
+      "repo": "PFR",
+      "name": "isUniform_sub_const_of_rdist_eq_zero",
+      "label": "sym-zero",
+      "file": "PFR/HundredPercent.lean",
+      "directory": "tasks/PFR/31",
+      "dependency_modules": 29
+    },
+    {
+      "index": 32,
+      "repo": "PFR",
+      "name": "exists_isUniform_of_rdist_self_eq_zero",
+      "label": "lem:100pc-self",
+      "file": "PFR/HundredPercent.lean",
+      "directory": "tasks/PFR/32",
+      "dependency_modules": 29
+    },
+    {
+      "index": 33,
+      "repo": "PFR",
+      "name": "exists_isUniform_of_rdist_eq_zero",
+      "label": "lem:100pc",
+      "file": "PFR/HundredPercent.lean",
+      "directory": "tasks/PFR/33",
+      "dependency_modules": 29
+    },
+    {
+      "index": 34,
+      "repo": "PFR",
+      "name": "rdist_of_hom_le",
+      "label": "fibring-ineq",
+      "file": "PFR/Fibring.lean",
+      "directory": "tasks/PFR/34",
+      "dependency_modules": 29
+    },
+    {
+      "index": 35,
+      "repo": "PFR",
+      "name": "sum_of_rdist_eq",
+      "label": "cor-fibre",
+      "file": "PFR/Fibring.lean",
+      "directory": "tasks/PFR/35",
+      "dependency_modules": 29
+    },
+    {
+      "index": 36,
+      "repo": "PFR",
+      "name": "ProbabilityTheory.IdentDistrib.tau_eq",
+      "label": "tau-copy",
+      "file": "PFR/TauFunctional.lean",
+      "directory": "tasks/PFR/36",
+      "dependency_modules": 29
+    },
+    {
+      "index": 37,
+      "repo": "PFR",
+      "name": "tau_minimizer_exists",
+      "label": "tau-min",
+      "file": "PFR/TauFunctional.lean",
+      "directory": "tasks/PFR/37",
+      "dependency_modules": 29
+    },
+    {
+      "index": 38,
+      "repo": "PFR",
+      "name": "distance_ge_of_min",
+      "label": "distance-lower",
+      "file": "PFR/TauFunctional.lean",
+      "directory": "tasks/PFR/38",
+      "dependency_modules": 29
+    },
+    {
+      "index": 39,
+      "repo": "PFR",
+      "name": "condRuzsaDistance_ge_of_min",
+      "label": "cond-distance-lower",
+      "file": "PFR/TauFunctional.lean",
+      "directory": "tasks/PFR/39",
+      "dependency_modules": 29
+    },
+    {
+      "index": 40,
+      "repo": "PFR",
+      "name": "rdist_add_rdist_add_condMutual_eq",
+      "label": "first-fibre",
+      "file": "PFR/FirstEstimate.lean",
+      "directory": "tasks/PFR/40",
+      "dependency_modules": 31
+    },
+    {
+      "index": 41,
+      "repo": "PFR",
+      "name": "rdist_of_sums_ge",
+      "label": "first-dist-sum",
+      "file": "PFR/FirstEstimate.lean",
+      "directory": "tasks/PFR/41",
+      "dependency_modules": 31
+    },
+    {
+      "index": 42,
+      "repo": "PFR",
+      "name": "condRuzsaDist_of_sums_ge",
+      "label": "first-cond",
+      "file": "PFR/FirstEstimate.lean",
+      "directory": "tasks/PFR/42",
+      "dependency_modules": 31
+    },
+    {
+      "index": 43,
+      "repo": "PFR",
+      "name": "first_estimate",
+      "label": "first-estimate",
+      "file": "PFR/FirstEstimate.lean",
+      "directory": "tasks/PFR/43",
+      "dependency_modules": 31
+    },
+    {
+      "index": 44,
+      "repo": "PFR",
+      "name": "ent_ofsum_le",
+      "label": "foursum-bound",
+      "file": "PFR/FirstEstimate.lean",
+      "directory": "tasks/PFR/44",
+      "dependency_modules": 31
+    },
+    {
+      "index": 45,
+      "repo": "PFR",
+      "name": "rdist_of_sums_ge'",
+      "label": "dist-sums",
+      "file": "PFR/SecondEstimate.lean",
+      "directory": "tasks/PFR/45",
+      "dependency_modules": 33
+    },
+    {
+      "index": 46,
+      "repo": "PFR",
+      "name": "second_estimate_aux",
+      "label": "second-estimate-aux",
+      "file": "PFR/SecondEstimate.lean",
+      "directory": "tasks/PFR/46",
+      "dependency_modules": 33
+    },
+    {
+      "index": 47,
+      "repo": "PFR",
+      "name": "second_estimate",
+      "label": "second-estimate",
+      "file": "PFR/SecondEstimate.lean",
+      "directory": "tasks/PFR/47",
+      "dependency_modules": 33
+    },
+    {
+      "index": 48,
+      "repo": "PFR",
+      "name": "I₃_eq",
+      "label": "symm-lemma",
+      "file": "PFR/Endgame.lean",
+      "directory": "tasks/PFR/48",
+      "dependency_modules": 34
+    },
+    {
+      "index": 49,
+      "repo": "PFR",
+      "name": "sum_dist_diff_le",
+      "label": "total-dist",
+      "file": "PFR/Endgame.lean",
+      "directory": "tasks/PFR/49",
+      "dependency_modules": 34
+    },
+    {
+      "index": 50,
+      "repo": "PFR",
+      "name": "sum_uvw_eq_zero",
+      "label": "key-ident",
+      "file": "PFR/Endgame.lean",
+      "directory": "tasks/PFR/50",
+      "dependency_modules": 34
+    },
+    {
+      "index": 51,
+      "repo": "PFR",
+      "name": "construct_good_prelim",
+      "label": "construct-good-prelim",
+      "file": "PFR/Endgame.lean",
+      "directory": "tasks/PFR/51",
+      "dependency_modules": 34
+    },
+    {
+      "index": 52,
+      "repo": "PFR",
+      "name": "construct_good",
+      "label": "construct-good",
+      "file": "PFR/Endgame.lean",
+      "directory": "tasks/PFR/52",
+      "dependency_modules": 34
+    },
+    {
+      "index": 53,
+      "repo": "PFR",
+      "name": "tau_strictly_decreases",
+      "label": "de-prop",
+      "file": "PFR/EntropyPFR.lean",
+      "directory": "tasks/PFR/53",
+      "dependency_modules": 36
+    },
+    {
+      "index": 54,
+      "repo": "PFR",
+      "name": "entropic_PFR_conjecture",
+      "label": "entropy-pfr",
+      "file": "PFR/EntropyPFR.lean",
+      "directory": "tasks/PFR/54",
+      "dependency_modules": 36
+    },
+    {
+      "index": 55,
+      "repo": "PFR",
+      "name": "PFR_conjecture_aux",
+      "label": "pfr_aux",
+      "file": "PFR/Main.lean",
+      "directory": "tasks/PFR/55",
+      "dependency_modules": 39
+    },
+    {
+      "index": 56,
+      "repo": "PFR",
+      "name": "PFR_conjecture",
+      "label": "pfr",
+      "file": "PFR/Main.lean",
+      "directory": "tasks/PFR/56",
+      "dependency_modules": 39
+    },
+    {
+      "index": 57,
+      "repo": "PFR",
+      "name": "PFR_conjecture'",
+      "label": "pfr-cor",
+      "file": "PFR/Main.lean",
+      "directory": "tasks/PFR/57",
+      "dependency_modules": 39
+    },
+    {
+      "index": 58,
+      "repo": "PFR",
+      "name": "construct_good_prelim'",
+      "label": "construct-good-prelim-improv",
+      "file": "PFR/ImprovedPFR.lean",
+      "directory": "tasks/PFR/58",
+      "dependency_modules": 40
+    },
+    {
+      "index": 59,
+      "repo": "PFR",
+      "name": "construct_good_improved'",
+      "label": "construct-good-improv",
+      "file": "PFR/ImprovedPFR.lean",
+      "directory": "tasks/PFR/59",
+      "dependency_modules": 40
+    },
+    {
+      "index": 60,
+      "repo": "PFR",
+      "name": "averaged_construct_good",
+      "label": "averaged-construct-good",
+      "file": "PFR/ImprovedPFR.lean",
+      "directory": "tasks/PFR/60",
+      "dependency_modules": 40
+    },
+    {
+      "index": 61,
+      "repo": "PFR",
+      "name": "gen_ineq_00",
+      "label": "gen-ineq",
+      "file": "PFR/ImprovedPFR.lean",
+      "directory": "tasks/PFR/61",
+      "dependency_modules": 40
+    },
+    {
+      "index": 62,
+      "repo": "PFR",
+      "name": "tau_strictly_decreases'",
+      "label": "de-prop-improv",
+      "file": "PFR/ImprovedPFR.lean",
+      "directory": "tasks/PFR/62",
+      "dependency_modules": 40
+    },
+    {
+      "index": 63,
+      "repo": "PFR",
+      "name": "tau_minimizer_exists_rdist_eq_zero",
+      "label": "de-prop-lim-improv",
+      "file": "PFR/ImprovedPFR.lean",
+      "directory": "tasks/PFR/63",
+      "dependency_modules": 40
+    },
+    {
+      "index": 64,
+      "repo": "PFR",
+      "name": "entropic_PFR_conjecture_improv",
+      "label": "entropy-pfr-improv",
+      "file": "PFR/ImprovedPFR.lean",
+      "directory": "tasks/PFR/64",
+      "dependency_modules": 40
+    },
+    {
+      "index": 65,
+      "repo": "PFR",
+      "name": "PFR_conjecture_improv_aux",
+      "label": "pfr_aux-improv",
+      "file": "PFR/ImprovedPFR.lean",
+      "directory": "tasks/PFR/65",
+      "dependency_modules": 40
+    },
+    {
+      "index": 66,
+      "repo": "PFR",
+      "name": "PFR_conjecture_improv",
+      "label": "pfr-improv",
+      "file": "PFR/ImprovedPFR.lean",
+      "directory": "tasks/PFR/66",
+      "dependency_modules": 40
+    },
+    {
+      "index": 67,
+      "repo": "PFR",
+      "name": "hahn_banach",
+      "label": "hb-thm",
+      "file": "PFR/HomPFR.lean",
+      "directory": "tasks/PFR/67",
+      "dependency_modules": 49
+    },
+    {
+      "index": 68,
+      "repo": "PFR",
+      "name": "goursat",
+      "label": "goursat",
+      "file": "PFR/HomPFR.lean",
+      "directory": "tasks/PFR/68",
+      "dependency_modules": 49
+    },
+    {
+      "index": 69,
+      "repo": "PFR",
+      "name": "homomorphism_pfr",
+      "label": "hom-pfr",
+      "file": "PFR/HomPFR.lean",
+      "directory": "tasks/PFR/69",
+      "dependency_modules": 49
+    },
+    {
+      "index": 70,
+      "repo": "PFR",
+      "name": "approx_hom_pfr",
+      "label": "approx-hom-pfr",
+      "file": "PFR/ApproxHomPFR.lean",
+      "directory": "tasks/PFR/70",
+      "dependency_modules": 50
+    },
+    {
+      "index": 71,
+      "repo": "PFR",
+      "name": "torsion_free_doubling",
+      "label": "torsion-free-doubling",
+      "file": "PFR/WeakPFR.lean",
+      "directory": "tasks/PFR/71",
+      "dependency_modules": 51
+    },
+    {
+      "index": 72,
+      "repo": "PFR",
+      "name": "torsion_dist_shrinking",
+      "label": "torsion-dist-shrinking",
+      "file": "PFR/WeakPFR.lean",
+      "directory": "tasks/PFR/72",
+      "dependency_modules": 51
+    },
+    {
+      "index": 73,
+      "repo": "PFR",
+      "name": "app_ent_PFR",
+      "label": "app-ent-pfr",
+      "file": "PFR/WeakPFR.lean",
+      "directory": "tasks/PFR/73",
+      "dependency_modules": 51
+    },
+    {
+      "index": 74,
+      "repo": "PFR",
+      "name": "PFR_projection'",
+      "label": "pfr-projection'",
+      "file": "PFR/WeakPFR.lean",
+      "directory": "tasks/PFR/74",
+      "dependency_modules": 51
+    },
+    {
+      "index": 75,
+      "repo": "PFR",
+      "name": "PFR_projection",
+      "label": "pfr-projection",
+      "file": "PFR/WeakPFR.lean",
+      "directory": "tasks/PFR/75",
+      "dependency_modules": 51
+    },
+    {
+      "index": 76,
+      "repo": "PFR",
+      "name": "single_fibres",
+      "label": "single-fibres",
+      "file": "PFR/WeakPFR.lean",
+      "directory": "tasks/PFR/76",
+      "dependency_modules": 51
+    },
+    {
+      "index": 77,
+      "repo": "PFR",
+      "name": "weak_PFR_asymm",
+      "label": "weak-pfr-asymm",
+      "file": "PFR/WeakPFR.lean",
+      "directory": "tasks/PFR/77",
+      "dependency_modules": 51
+    },
+    {
+      "index": 78,
+      "repo": "PFR",
+      "name": "weak_PFR_int",
+      "label": "weak-pfr-int",
+      "file": "PFR/WeakPFR.lean",
+      "directory": "tasks/PFR/78",
+      "dependency_modules": 51
+    },
+    {
+      "index": 79,
+      "repo": "PFR",
+      "name": "entropy_comp_le",
+      "label": "data-process-single",
+      "file": "PFR/ForMathlib/Entropy/Basic.lean",
+      "directory": "tasks/PFR/79",
+      "dependency_modules": 19
+    },
+    {
+      "index": 80,
+      "repo": "PFR",
+      "name": "mutual_comp_le",
+      "label": "data-process-unc-one",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/80",
+      "dependency_modules": 29
+    },
+    {
+      "index": 81,
+      "repo": "PFR",
+      "name": "mutual_comp_comp_le",
+      "label": "data-process-unc",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/81",
+      "dependency_modules": 29
+    },
+    {
+      "index": 82,
+      "repo": "PFR",
+      "name": "condMutual_comp_comp_le",
+      "label": "data-process",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/82",
+      "dependency_modules": 29
+    },
+    {
+      "index": 83,
+      "repo": "PFR",
+      "name": "rdist_of_neg_le",
+      "label": "sign-flip",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/83",
+      "dependency_modules": 29
+    },
+    {
+      "index": 84,
+      "repo": "PFR",
+      "name": "kvm_ineq_I",
+      "label": "klm-1",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/84",
+      "dependency_modules": 29
+    },
+    {
+      "index": 85,
+      "repo": "PFR",
+      "name": "kvm_ineq_II",
+      "label": "klm-2",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/85",
+      "dependency_modules": 29
+    },
+    {
+      "index": 86,
+      "repo": "PFR",
+      "name": "kvm_ineq_III",
+      "label": "klm-3",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/86",
+      "dependency_modules": 29
+    },
+    {
+      "index": 87,
+      "repo": "PFR",
+      "name": "ent_of_sum_le_ent_of_sum",
+      "label": "compare-sums",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/87",
+      "dependency_modules": 29
+    },
+    {
+      "index": 88,
+      "repo": "PFR",
+      "name": "ent_of_sub_smul_le",
+      "label": "sum-dilate-II",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/88",
+      "dependency_modules": 29
+    },
+    {
+      "index": 89,
+      "repo": "PFR",
+      "name": "multiDist_copy",
+      "label": "multidist-copy",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/89",
+      "dependency_modules": 29
+    },
+    {
+      "index": 90,
+      "repo": "PFR",
+      "name": "multiDist_indep",
+      "label": "multidist-indep",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/90",
+      "dependency_modules": 29
+    },
+    {
+      "index": 91,
+      "repo": "PFR",
+      "name": "multiDist_nonneg",
+      "label": "multidist-nonneg",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/91",
+      "dependency_modules": 29
+    },
+    {
+      "index": 92,
+      "repo": "PFR",
+      "name": "multiDist_of_perm",
+      "label": "multidist-perm",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/92",
+      "dependency_modules": 29
+    },
+    {
+      "index": 93,
+      "repo": "PFR",
+      "name": "multidist_ruzsa_I",
+      "label": "multidist-ruzsa-I",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/93",
+      "dependency_modules": 29
+    },
+    {
+      "index": 94,
+      "repo": "PFR",
+      "name": "multidist_ruzsa_II",
+      "label": "multidist-ruzsa-II",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/94",
+      "dependency_modules": 29
+    },
+    {
+      "index": 95,
+      "repo": "PFR",
+      "name": "multidist_ruzsa_III",
+      "label": "multidist-ruzsa-III",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/95",
+      "dependency_modules": 29
+    },
+    {
+      "index": 96,
+      "repo": "PFR",
+      "name": "multidist_ruzsa_IV",
+      "label": "multidist-ruzsa-IV",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/96",
+      "dependency_modules": 29
+    },
+    {
+      "index": 97,
+      "repo": "PFR",
+      "name": "multidist_eq_zero",
+      "label": "multi-zero",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/97",
+      "dependency_modules": 29
+    },
+    {
+      "index": 98,
+      "repo": "PFR",
+      "name": "multiTau_min_sum_le",
+      "label": "tau-ref",
+      "file": "PFR/MultiTauFunctional.lean",
+      "directory": "tasks/PFR/98",
+      "dependency_modules": 30
+    },
+    {
+      "index": 99,
+      "repo": "PFR",
+      "name": "sub_multiDistance_le",
+      "label": "multidist-lower",
+      "file": "PFR/MultiTauFunctional.lean",
+      "directory": "tasks/PFR/99",
+      "dependency_modules": 30
+    },
+    {
+      "index": 100,
+      "repo": "PFR",
+      "name": "condMultiDist_eq",
+      "label": "cond-multidist-alt",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/100",
+      "dependency_modules": 29
+    },
+    {
+      "index": 101,
+      "repo": "PFR",
+      "name": "condMultiDist_nonneg",
+      "label": "cond-multidist-nonneg",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/101",
+      "dependency_modules": 29
+    },
+    {
+      "index": 102,
+      "repo": "PFR",
+      "name": "sub_condMultiDistance_le",
+      "label": "cond-multidist-lower",
+      "file": "PFR/MultiTauFunctional.lean",
+      "directory": "tasks/PFR/102",
+      "dependency_modules": 30
+    },
+    {
+      "index": 103,
+      "repo": "PFR",
+      "name": "sub_condMultiDistance_le'",
+      "label": "cond-multidist-lower-II",
+      "file": "PFR/MultiTauFunctional.lean",
+      "directory": "tasks/PFR/103",
+      "dependency_modules": 30
+    },
+    {
+      "index": 104,
+      "repo": "PFR",
+      "name": "multiDist_chainRule",
+      "label": "multidist-chain-rule",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/104",
+      "dependency_modules": 29
+    },
+    {
+      "index": 105,
+      "repo": "PFR",
+      "name": "cond_multiDist_chainRule",
+      "label": "multidist-chain-rule-cond",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/105",
+      "dependency_modules": 29
+    },
+    {
+      "index": 106,
+      "repo": "PFR",
+      "name": "cor_multiDist_chainRule",
+      "label": "cor-multid",
+      "file": "PFR/MoreRuzsaDist.lean",
+      "directory": "tasks/PFR/106",
+      "dependency_modules": 29
+    },
+    {
+      "index": 107,
+      "repo": "PFR",
+      "name": "mutual_information_le",
+      "label": "key",
+      "file": "PFR/BoundingMutual.lean",
+      "directory": "tasks/PFR/107",
+      "dependency_modules": 31
+    },
+    {
+      "index": 108,
+      "repo": "PFR",
+      "name": "sum_of_z_eq_zero",
+      "label": "Zero-sum",
+      "file": "PFR/TorsionEndgame.lean",
+      "directory": "tasks/PFR/108",
+      "dependency_modules": 42
+    },
+    {
+      "index": 109,
+      "repo": "PFR",
+      "name": "entropy_of_W_le",
+      "label": "ent-w",
+      "file": "PFR/TorsionEndgame.lean",
+      "directory": "tasks/PFR/109",
+      "dependency_modules": 42
+    },
+    {
+      "index": 110,
+      "repo": "PFR",
+      "name": "entropy_of_Z_two_le",
+      "label": "ent-z2",
+      "file": "PFR/TorsionEndgame.lean",
+      "directory": "tasks/PFR/110",
+      "dependency_modules": 42
+    },
+    {
+      "index": 111,
+      "repo": "PFR",
+      "name": "mutual_of_W_Z_two_le",
+      "label": "mutual-w-z2",
+      "file": "PFR/TorsionEndgame.lean",
+      "directory": "tasks/PFR/111",
+      "dependency_modules": 42
+    },
+    {
+      "index": 112,
+      "repo": "PFR",
+      "name": "sum_of_conditional_distance_le",
+      "label": "xi-z2-w-dist",
+      "file": "PFR/TorsionEndgame.lean",
+      "directory": "tasks/PFR/112",
+      "dependency_modules": 42
+    },
+    {
+      "index": 113,
+      "repo": "PFR",
+      "name": "dist_of_U_add_le",
+      "label": "lem:get-better",
+      "file": "PFR/TorsionEndgame.lean",
+      "directory": "tasks/PFR/113",
+      "dependency_modules": 42
+    },
+    {
+      "index": 114,
+      "repo": "PFR",
+      "name": "dist_of_X_U_H_le",
+      "label": "main-entropy",
+      "file": "PFR/TorsionEndgame.lean",
+      "directory": "tasks/PFR/114",
+      "dependency_modules": 42
+    },
+    {
+      "index": 115,
+      "repo": "PFR",
+      "name": "torsion_PFR_conjecture_aux",
+      "label": "pfr_aux_torsion",
+      "file": "PFR/TorsionEndgame.lean",
+      "directory": "tasks/PFR/115",
+      "dependency_modules": 42
+    },
+    {
+      "index": 116,
+      "repo": "PFR",
+      "name": "torsion_PFR",
+      "label": "pfr-torsion",
+      "file": "PFR/TorsionEndgame.lean",
+      "directory": "tasks/PFR/116",
+      "dependency_modules": 42
+    },
+    {
+      "index": 117,
+      "repo": "PFR",
+      "name": "KLDiv_nonneg",
+      "label": "Gibbs",
+      "file": "PFR/Kullback.lean",
+      "directory": "tasks/PFR/117",
+      "dependency_modules": 26
+    },
+    {
+      "index": 118,
+      "repo": "PFR",
+      "name": "KLDiv_eq_zero_iff_identDistrib",
+      "label": "Gibbs-converse",
+      "file": "PFR/Kullback.lean",
+      "directory": "tasks/PFR/118",
+      "dependency_modules": 26
+    },
+    {
+      "index": 119,
+      "repo": "PFR",
+      "name": "KLDiv_of_convex",
+      "label": "kl-div-convex",
+      "file": "PFR/Kullback.lean",
+      "directory": "tasks/PFR/119",
+      "dependency_modules": 26
+    },
+    {
+      "index": 120,
+      "repo": "PFR",
+      "name": "KLDiv_of_comp_inj",
+      "label": "kl-div-inj",
+      "file": "PFR/Kullback.lean",
+      "directory": "tasks/PFR/120",
+      "dependency_modules": 26
+    },
+    {
+      "index": 121,
+      "repo": "PFR",
+      "name": "KLDiv_add_le_KLDiv_of_indep",
+      "label": "kl-sums",
+      "file": "PFR/Kullback.lean",
+      "directory": "tasks/PFR/121",
+      "dependency_modules": 26
+    },
+    {
+      "index": 122,
+      "repo": "PFR",
+      "name": "condKLDiv_eq",
+      "label": "kl-cond",
+      "file": "PFR/Kullback.lean",
+      "directory": "tasks/PFR/122",
+      "dependency_modules": 26
+    },
+    {
+      "index": 123,
+      "repo": "PFR",
+      "name": "condKLDiv_nonneg",
+      "label": "Conditional-Gibbs",
+      "file": "PFR/Kullback.lean",
+      "directory": "tasks/PFR/123",
+      "dependency_modules": 26
+    },
+    {
+      "index": 124,
+      "repo": "PFR",
+      "name": "rhoMinus_of_subgroup",
+      "label": "rhominus-subgroup",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/124",
+      "dependency_modules": 45
+    },
+    {
+      "index": 125,
+      "repo": "PFR",
+      "name": "rhoPlus_of_subgroup",
+      "label": "rhoplus-subgroup",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/125",
+      "dependency_modules": 45
+    },
+    {
+      "index": 126,
+      "repo": "PFR",
+      "name": "rho_of_subgroup",
+      "label": "rho-subgroup",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/126",
+      "dependency_modules": 45
+    },
+    {
+      "index": 127,
+      "repo": "PFR",
+      "name": "rho_of_translate",
+      "label": "rho-invariant",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/127",
+      "dependency_modules": 45
+    },
+    {
+      "index": 128,
+      "repo": "PFR",
+      "name": "rho_continuous",
+      "label": "rho-cts",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/128",
+      "dependency_modules": 45
+    },
+    {
+      "index": 129,
+      "repo": "PFR",
+      "name": "condRho_of_translate",
+      "label": "rho-cond-invariant",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/129",
+      "dependency_modules": 45
+    },
+    {
+      "index": 130,
+      "repo": "PFR",
+      "name": "condRho_of_injective",
+      "label": "rho-cond-relabeled",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/130",
+      "dependency_modules": 45
+    },
+    {
+      "index": 131,
+      "repo": "PFR",
+      "name": "rho_of_sum_le",
+      "label": "rho-sums-sym",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/131",
+      "dependency_modules": 45
+    },
+    {
+      "index": 132,
+      "repo": "PFR",
+      "name": "condRho_of_sum_le",
+      "label": "rho-cond-sym",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/132",
+      "dependency_modules": 45
+    },
+    {
+      "index": 133,
+      "repo": "PFR",
+      "name": "phi_min_exists",
+      "label": "phi-min-exist",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/133",
+      "dependency_modules": 45
+    },
+    {
+      "index": 134,
+      "repo": "PFR",
+      "name": "I_one_le",
+      "label": "phi-first-estimate",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/134",
+      "dependency_modules": 45
+    },
+    {
+      "index": 135,
+      "repo": "PFR",
+      "name": "rdist_add_rdist_eq",
+      "label": "I1-I2-diff",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/135",
+      "dependency_modules": 45
+    },
+    {
+      "index": 136,
+      "repo": "PFR",
+      "name": "I_two_le",
+      "label": "phi-second-estimate",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/136",
+      "dependency_modules": 45
+    },
+    {
+      "index": 137,
+      "repo": "PFR",
+      "name": "dist_le_of_sum_zero",
+      "label": "rho-BSG-triplet",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/137",
+      "dependency_modules": 45
+    },
+    {
+      "index": 138,
+      "repo": "PFR",
+      "name": "dist_le_of_sum_zero'",
+      "label": "rho-BSG-triplet-symmetrized",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/138",
+      "dependency_modules": 45
+    },
+    {
+      "index": 139,
+      "repo": "PFR",
+      "name": "condRho_sum_le",
+      "label": "rho-increase",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/139",
+      "dependency_modules": 45
+    },
+    {
+      "index": 140,
+      "repo": "PFR",
+      "name": "condRho_sum_le'",
+      "label": "rho-increase-symmetrized",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/140",
+      "dependency_modules": 45
+    },
+    {
+      "index": 141,
+      "repo": "PFR",
+      "name": "dist_of_min_eq_zero",
+      "label": "phi-minimizer-zero-distance",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/141",
+      "dependency_modules": 45
+    },
+    {
+      "index": 142,
+      "repo": "PFR",
+      "name": "rho_PFR_conjecture",
+      "label": "pfr-rho",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/142",
+      "dependency_modules": 45
+    },
+    {
+      "index": 143,
+      "repo": "PFR",
+      "name": "better_PFR_conjecture_aux0",
+      "label": "pfr-9-aux",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/143",
+      "dependency_modules": 45
+    },
+    {
+      "index": 144,
+      "repo": "PFR",
+      "name": "better_PFR_conjecture_aux",
+      "label": "pfr-9-aux'",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/144",
+      "dependency_modules": 45
+    },
+    {
+      "index": 145,
+      "repo": "PFR",
+      "name": "better_PFR_conjecture",
+      "label": "pfr-9",
+      "file": "PFR/RhoFunctional.lean",
+      "directory": "tasks/PFR/145",
+      "dependency_modules": 45
+    }
+  ],
+  "excluded_tasks": [
+    {
+      "index": 16,
+      "repo": "PFR",
+      "reason": "missing informal_proof"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "item_index": 176,
+  "toolchain": "leanprover/lean4:v4.13.0-rc3",
+  "files": {
+    "lib/TestingLowerBounds/Convex.olean": "5262003736c266c3e03d94524e00628020ab591c10ec768b71ae56fd5de9f82b",
+    "lib/TestingLowerBounds/DerivAtTop.olean": "b759b4c10b54743d133a9d181c4db0759245930dcc4743e6684ea1eec4354032",
+    "lib/TestingLowerBounds/Divergences/StatInfo/StatInfo.olean": "31b5598d53e78d8035d3d337b7c380bb16834bc2291d8cdd871bf699354465d6",
+    "lib/TestingLowerBounds/Divergences/StatInfo/StatInfoFun.olean": "f3e01376e816c61d78e3c8b32be42cd5e686f347e8494afd10a6f3332040f87a",
+    "lib/TestingLowerBounds/ForMathlib/EReal.olean": "974096659d6f14d34249906f80e837d9795709584200d0fb0bd5a1879cd52c6e",
+    "lib/TestingLowerBounds/ForMathlib/Integrable.olean": "996ddecb13e60aeb42c5f19ed6c56632337c4d65382e6447b95095bc950afb54",
+    "lib/TestingLowerBounds/ForMathlib/LeftRightDeriv.olean": "fa0ca1733d841784f5538a687818937fefcec365abeb3fa53e5bb51b0d586e99",
+    "lib/TestingLowerBounds/ForMathlib/MaxMinEqAbs.olean": "5468c74d2c72b1d41c6827bb05266a3dff8e78b45b87c3252fa17fd87079059c",
+    "lib/TestingLowerBounds/ForMathlib/RnDeriv.olean": "f8c10ef05cdc205c9efa8004feaaaa6cfb4967bcb1c2805a0cabfc52a76c6f47",
+    "lib/TestingLowerBounds/IntegrableFRNDeriv.olean": "80b9a16798ace1ccd493889502a48d978eef382c75bb2af6adec0ab3f7043a88",
+    "lib/TestingLowerBounds/Kernel/BayesInv.olean": "918dcc4de09203d357e6b66a44915bb53af8caa9e9416c4b625feec6a055f0ca",
+    "lib/TestingLowerBounds/Kernel/Deterministic.olean": "61d811779013cd81a49022c6a1a46ddf0506b644e2dedc187a88e907f3d4ec6f",
+    "lib/TestingLowerBounds/Kernel/DeterministicComp.olean": "2b64946785dac2a347d79390437e9ea06961fadf53e3e329799dae6d925ba450",
+    "lib/TestingLowerBounds/Kernel/ParallelComp.olean": "acdd989fcd982f1bf8201bc3c8c6aabc293dc0657bde7054ffbab77ea50ce89b",
+    "lib/TestingLowerBounds/MeasureCompProd.olean": "f30aed166e4cd9c7b2f19c32203a24058e68b1035024248cef6c9f5e23250a43",
+    "lib/TestingLowerBounds/Testing/Binary.olean": "25c1031f85aff2b0296bac469c9a7d1d5078c3ad63ebb6d8f0da159ff01c4da9",
+    "lib/TestingLowerBounds/Testing/BoolMeasure.olean": "398aebb183972214b5a2fc38c1638a8c7a6b4545cd033165f57a80b60e7d1f52",
+    "lib/TestingLowerBounds/Testing/Risk.olean": "2a25a2aaccc961a3ff2ed6949a3afd90ba60d2d957c1867af25de377ff9aeaf2",
+    "lib/TestingLowerBounds/Testing/TwoHypKernel.olean": "f5c6547caa610d406c2c8879c955526efdab9314963b28baa331f82729db8431"
+  },
+  "environment": "tlb"
+}

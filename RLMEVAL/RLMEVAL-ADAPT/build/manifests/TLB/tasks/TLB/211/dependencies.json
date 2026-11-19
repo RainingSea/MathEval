@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "item_index": 211,
+  "toolchain": "leanprover/lean4:v4.13.0-rc3",
+  "files": {
+    "lib/TestingLowerBounds/CompProd.olean": "414f51d489f447ef8f48ca5e48fd470b5d1cb4ad9b83023619fff75e3122e0ee",
+    "lib/TestingLowerBounds/Convex.olean": "5262003736c266c3e03d94524e00628020ab591c10ec768b71ae56fd5de9f82b",
+    "lib/TestingLowerBounds/DerivAtTop.olean": "b759b4c10b54743d133a9d181c4db0759245930dcc4743e6684ea1eec4354032",
+    "lib/TestingLowerBounds/FDiv/Basic.olean": "41c43d3ed3f8659e73afad98bbc0dddc64212db09664fd299743e6fc7622e11a",
+    "lib/TestingLowerBounds/FDiv/CompProd/EqTopIff.olean": "2d244153912a1f2e74a376cd778c9d76dee2ea2439408965fe8771693c21ffff",
+    "lib/TestingLowerBounds/FDiv/IntegralRnDerivSingularPart.olean": "1e34131ce0ea343505dd7f80c60d01b4eb863f5bc7ec7a4f0683ee805e8fac3a",
+    "lib/TestingLowerBounds/ForMathlib/AbsolutelyContinuous.olean": "5ddb6e40191c20a40074a031f35bc6f2b6d458fbd459746a0d10b49ce594c43e",
+    "lib/TestingLowerBounds/ForMathlib/EReal.olean": "974096659d6f14d34249906f80e837d9795709584200d0fb0bd5a1879cd52c6e",
+    "lib/TestingLowerBounds/ForMathlib/Integrable.olean": "996ddecb13e60aeb42c5f19ed6c56632337c4d65382e6447b95095bc950afb54",
+    "lib/TestingLowerBounds/ForMathlib/KernelFstSnd.olean": "0dad67a49136f246e349c75b3db34c34b21bc4aedcd1844847b5af1ae59bcd50",
+    "lib/TestingLowerBounds/ForMathlib/LeftRightDeriv.olean": "fa0ca1733d841784f5538a687818937fefcec365abeb3fa53e5bb51b0d586e99",
+    "lib/TestingLowerBounds/ForMathlib/RadonNikodym.olean": "3dd1a99f340a194138c6c42c89211612f0c81a56125c133112bbb49874588117",
+    "lib/TestingLowerBounds/ForMathlib/RnDeriv.olean": "f8c10ef05cdc205c9efa8004feaaaa6cfb4967bcb1c2805a0cabfc52a76c6f47",
+    "lib/TestingLowerBounds/IntegrableFRNDeriv.olean": "80b9a16798ace1ccd493889502a48d978eef382c75bb2af6adec0ab3f7043a88",
+    "lib/TestingLowerBounds/Kernel/Deterministic.olean": "61d811779013cd81a49022c6a1a46ddf0506b644e2dedc187a88e907f3d4ec6f",
+    "lib/TestingLowerBounds/Kernel/DeterministicComp.olean": "2b64946785dac2a347d79390437e9ea06961fadf53e3e329799dae6d925ba450",
+    "lib/TestingLowerBounds/Kernel/ParallelComp.olean": "acdd989fcd982f1bf8201bc3c8c6aabc293dc0657bde7054ffbab77ea50ce89b",
+    "lib/TestingLowerBounds/MeasureCompProd.olean": "f30aed166e4cd9c7b2f19c32203a24058e68b1035024248cef6c9f5e23250a43"
+  },
+  "environment": "tlb"
+}

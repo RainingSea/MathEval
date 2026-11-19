@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "item_index": 200,
+  "toolchain": "leanprover/lean4:v4.13.0-rc3",
+  "files": {
+    "lib/TestingLowerBounds/ForMathlib/LeftRightDeriv.olean": "fa0ca1733d841784f5538a687818937fefcec365abeb3fa53e5bb51b0d586e99",
+    "lib/TestingLowerBounds/Sorry/ByParts.olean": "e04c8e1bf01fb252dedea7d0fd5bb135bf3b09f61ffd2599625d26db2a4a8d24"
+  },
+  "environment": "tlb"
+}

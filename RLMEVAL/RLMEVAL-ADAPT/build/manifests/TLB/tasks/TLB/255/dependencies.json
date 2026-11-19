@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "item_index": 255,
+  "toolchain": "leanprover/lean4:v4.13.0-rc3",
+  "files": {
+    "lib/TestingLowerBounds/Kernel/Deterministic.olean": "61d811779013cd81a49022c6a1a46ddf0506b644e2dedc187a88e907f3d4ec6f",
+    "lib/TestingLowerBounds/Kernel/DeterministicComp.olean": "2b64946785dac2a347d79390437e9ea06961fadf53e3e329799dae6d925ba450",
+    "lib/TestingLowerBounds/Kernel/ParallelComp.olean": "acdd989fcd982f1bf8201bc3c8c6aabc293dc0657bde7054ffbab77ea50ce89b",
+    "lib/TestingLowerBounds/MeasureCompProd.olean": "f30aed166e4cd9c7b2f19c32203a24058e68b1035024248cef6c9f5e23250a43"
+  },
+  "environment": "tlb"
+}

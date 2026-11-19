@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "item_index": 163,
+  "toolchain": "leanprover/lean4:v4.13.0-rc3",
+  "files": {
+    "lib/TestingLowerBounds/ForMathlib/MaxMinEqAbs.olean": "5468c74d2c72b1d41c6827bb05266a3dff8e78b45b87c3252fa17fd87079059c",
+    "lib/TestingLowerBounds/Kernel/BayesInv.olean": "918dcc4de09203d357e6b66a44915bb53af8caa9e9416c4b625feec6a055f0ca",
+    "lib/TestingLowerBounds/Kernel/Deterministic.olean": "61d811779013cd81a49022c6a1a46ddf0506b644e2dedc187a88e907f3d4ec6f",
+    "lib/TestingLowerBounds/Kernel/DeterministicComp.olean": "2b64946785dac2a347d79390437e9ea06961fadf53e3e329799dae6d925ba450",
+    "lib/TestingLowerBounds/Kernel/ParallelComp.olean": "acdd989fcd982f1bf8201bc3c8c6aabc293dc0657bde7054ffbab77ea50ce89b",
+    "lib/TestingLowerBounds/MeasureCompProd.olean": "f30aed166e4cd9c7b2f19c32203a24058e68b1035024248cef6c9f5e23250a43",
+    "lib/TestingLowerBounds/Testing/BoolMeasure.olean": "398aebb183972214b5a2fc38c1638a8c7a6b4545cd033165f57a80b60e7d1f52",
+    "lib/TestingLowerBounds/Testing/Risk.olean": "2a25a2aaccc961a3ff2ed6949a3afd90ba60d2d957c1867af25de377ff9aeaf2",
+    "lib/TestingLowerBounds/Testing/TwoHypKernel.olean": "f5c6547caa610d406c2c8879c955526efdab9314963b28baa331f82729db8431"
+  },
+  "environment": "tlb"
+}
