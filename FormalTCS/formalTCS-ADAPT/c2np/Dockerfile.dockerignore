@@ -1,0 +1,7 @@
+**
+!formalTCS-ADAPT/
+!formalTCS-ADAPT/c2np/
+!formalTCS-ADAPT/c2np/Dockerfile
+!formalTCS-ADAPT/c2np/install_claude.py
+!formalTCS-ADAPT/c2np/run.py
+!formalTCS-ADAPT/c2np/docker_worker.py

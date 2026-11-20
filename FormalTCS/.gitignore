@@ -1,0 +1,9 @@
+/FormalTCS/
+/.upstream-*/
+/dependencies/
+/formalTCS-ADAPT/c2np/runs/
+/formalTCS-ADAPT/c2np/.local/
+model_conf.txt
+.env
+__pycache__/
+*.pyc
