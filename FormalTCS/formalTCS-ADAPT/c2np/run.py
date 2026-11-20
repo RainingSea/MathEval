@@ -26,6 +26,7 @@ ADAPT = Path(__file__).resolve().parent
 UPSTREAM = ADAPT.parent.parent / "FormalTCS"
 DEFAULT_TIMEOUT_SECONDS = 12 * 60 * 60
 MAX_OUTPUT_TOKENS_ENV = "CLAUDE_CODE_MAX_OUTPUT_TOKENS"
+HTTP_NO_AUTH_TOKEN = "formaltcs-no-auth"
 JUDGE_PROFILE = "自己平台"
 JUDGE_MODEL = "gpt-6.1-sol"
 JUDGE_EFFORT = "high"
@@ -73,20 +74,24 @@ def credentials(profile, config):
         url = values.get("OPENAI_BASE_URL", "")
     if not key or any(char.isspace() for char in key) or not url:
         raise ValueError("Set ANTHROPIC_AUTH_TOKEN and ANTHROPIC_BASE_URL, or use a complete --profile")
-    return key, normalize_base_url(url)
+    allow_http = profile is None and os.environ.get("FORMALTCS_ALLOW_HTTP") == "1"
+    base = normalize_base_url(url, allow_http=allow_http)
+    if base.startswith("http://") and key != HTTP_NO_AUTH_TOKEN:
+        raise ValueError(f"For an unauthenticated HTTP endpoint, set ANTHROPIC_AUTH_TOKEN={HTTP_NO_AUTH_TOKEN}; never send a real key over HTTP")
+    return key, base
 
 
-def normalize_base_url(url, resource="/v1/messages"):
+def normalize_base_url(url, resource="/v1/messages", *, allow_http=False):
     try:
         parsed = urlsplit(url)
-        valid = parsed.scheme == "https" and parsed.hostname and not any(
+        valid = (parsed.scheme == "https" or (allow_http and parsed.scheme == "http")) and parsed.hostname and not any(
             (parsed.username, parsed.password, parsed.query, parsed.fragment, "@" in parsed.netloc)
         )
         parsed.port
     except ValueError:
         valid = False
     if not valid:
-        raise ValueError("Gateway URL must be HTTPS, without credentials, query, or fragment")
+        raise ValueError("Gateway URL must be HTTPS (unless HTTP generation is explicitly enabled), without credentials, query, or fragment")
     path = parsed.path.rstrip("/").removesuffix(resource).removesuffix("/v1")
     return urlunsplit((parsed.scheme, parsed.netloc, path, "", ""))
 
@@ -106,11 +111,9 @@ def judge_credentials(expected_base=None):
 
 def load_upstream():
     revision = (ADAPT / "upstream.rev").read_text(encoding="utf-8").strip()
-    git = ["git", "-C", str(UPSTREAM)]
-    if (subprocess.check_output([*git, "rev-parse", "HEAD"], text=True).strip() != revision
-            or subprocess.check_output([*git, "status", "--porcelain"], text=True).strip()):
-        raise ValueError("Expected a clean FormalTCS checkout at the revision in upstream.rev")
     evaluator = UPSTREAM / "evaluate"
+    if not ((UPSTREAM / "benchmark/collection.json").is_file() and (evaluator / "dataset.py").is_file()):
+        raise ValueError("Missing vendored FormalTCS files; restore them from the MathEval checkout")
     if str(evaluator) not in sys.path:
         sys.path[:0] = [str(evaluator), str(UPSTREAM)]
     sys.dont_write_bytecode = True

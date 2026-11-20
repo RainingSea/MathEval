@@ -24,7 +24,7 @@ declare -A defaults=(
     [JUDGE_API_KEY]=""
 
     [IMAGE]="formaltcs-c2np:claude-2.1.323"
-    [FORMALTCS_PYTHON]="/usr/bin/python3"
+    [FORMALTCS_PYTHON]="python3"
 )
 
 for setting in "${!defaults[@]}"; do

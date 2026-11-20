@@ -4,22 +4,38 @@
 
 ```text
 MathEval/FormalTCS/
-├── FormalTCS/           初始化时获取的锁定版本上游源码（不跟踪）
+├── FormalTCS/           随 MathEval 跟踪的上游源码和题库快照
 ├── dependencies/       可选静态依赖资源（不跟踪，C2NP 不需要）
 └── formalTCS-ADAPT/
     └── c2np/           C2NP 的代码、配置、Dockerfile、安装脚本和说明
-        ├── .local/     Python venv、临时工作区和离线验证报告
+        ├── .local/     本地 Python 虚拟环境
         └── runs/       挂载到宿主机的运行产物、评分与总分
 ```
 
-## Docker 批跑
+## 从源码重建环境
 
-从 MathEval 仓库根目录进入 `FormalTCS/formalTCS-ADAPT/c2np/`。宿主机需要 Linux（x86-64 或 arm64）、Docker（本地 daemon、BuildKit）、Bash、Git、Python 3.10+（含 `venv`）；不需要宿主机 Claude CLI、bwrap、Lean、Mathlib 或第三方 Python 包。首次初始化和构建需要联网。
+宿主机需要 Linux（x86-64 或 arm64）、Bash、Git、Python 3.10+（含 `venv`），以及当前用户可访问的本机 Docker daemon（启用 BuildKit）。克隆 MathEval 需要仓库访问权限和 GitHub SSH 配置；克隆后，上游源码和题库已经在本地。首次构建镜像需要访问 Docker Hub 和 `storage.googleapis.com`。不需要模型密钥，也不需要在宿主机安装 Claude CLI、bwrap、Lean、Mathlib 或额外的 Python 包：C2NP 只把 Lean 源码当作文本读取。
 
 ```bash
+git clone git@github.com:RainingSea/MathEval.git
+cd MathEval
 cd FormalTCS/formalTCS-ADAPT/c2np
 bash bootstrap.sh
 bash build-image.sh
+```
+
+如果已克隆 MathEval，从仓库根目录进入 `FormalTCS/formalTCS-ADAPT/c2np/`，执行最后两条命令即可。
+
+- `bootstrap.sh` 检查仓库自带的题库文件并创建 `.local/venv/`，不联网，不需要再次克隆 `zirui-HIT/FormalTCS`。`upstream.rev` 记录快照来源；如果以后更新快照，同步更新该文件。默认使用 `python3`，也可设置 `FORMALTCS_PYTHON`；不需要激活 venv。
+- `build-image.sh` 只构建镜像。`Dockerfile` 固定 Python 基础镜像摘要，并安装经 SHA-256 校验的 Claude Code `2.1.323`。默认镜像名为 `formaltcs-c2np:claude-2.1.323`，由本机 Docker 管理。可用 `docker run --rm --network none --entrypoint claude formaltcs-c2np:claude-2.1.323 --version` 查看内置版本。
+
+`dependencies/` 可以不存在。`runs/`、`dependencies/`、本地环境和密钥文件均不随 Git 提交。上游快照是普通文件，不是子模块，也没有嵌套的 `.git`。
+
+## Docker 批跑
+
+在同一目录配置生成与裁判服务后运行。两个 endpoint 和模型都可以替换为你有权限访问的服务。不要把密钥提交到 Git。
+
+```bash
 read -rsp 'Generation API key: ' ANTHROPIC_AUTH_TOKEN; echo
 read -rsp 'Judge API key: ' JUDGE_API_KEY; echo
 export ANTHROPIC_AUTH_TOKEN JUDGE_API_KEY
@@ -33,23 +49,11 @@ INDICES=1-2 CONCURRENCY=2 SAMPLES=4 \
 
 `INDICES` 按题库原始顺序从 1 编号，支持 `1,3-5` 或 `all`；也可以用 `ITEMS=BNNESS_463232,DMLG_319520` 直接指定题目 ID，非空时优先于 `INDICES`。`CONCURRENCY` 是生成并发；`SAMPLES=4` 只表示每题独立生成四份样本，不计算 pass@k。示例共启动八个容器，每个样本的 `TMO` 默认 43200 秒（12 小时）。
 
+对受信网络内无需认证的 HTTP Messages 服务，可设置 `FORMALTCS_ALLOW_HTTP=1` 和 `ANTHROPIC_AUTH_TOKEN=formaltcs-no-auth`。后者只是满足 Claude Code 的占位值，不要用真实密钥替换；HTTP 不加密题面和回复。裁判仍要求 HTTPS。
+
 镜像只含运行环境和代码，不含题库、凭据或旧运行结果。每个容器只读挂载自己的题面和任务说明，只写自己的输出目录；参考答案仅由宿主机裁判读取。容器内密钥由标准输入传入，不写进镜像、Docker 环境配置或运行清单。每个样本的 `docker.log` 可用 `tail -f` 查看已经发出的工具事件与诊断，不保存逐 token 的推理流。
 
 容器全部退出后，启动脚本调用宿主机评分函数，逐份评分。`runs/batch-*/summary.json` 的 `total_score` 是所有成功评分样本的加权分之和，每份满分 1；`possible_score` 是计划样本数。失败或未获评分的样本分数为 `null`，批次标为 `incomplete` 并返回非零退出码，不把服务错误伪装成 0 分。可用 `python3 -B batch.py grade 'runs/实际批次目录'` 补评失败项并重算总分，不重新生成；补评需在环境中提供原批次的 `JUDGE_BASE_URL` 和对应的 `JUDGE_API_KEY`，模型沿用原批次配置。已成功评分的样本会复用。
-
-## 构建与验证
-
-需要 Linux、Bash、Git、Python 3.10+（标准库需含 `venv`）。C2NP 的输入是自然语言定理和带 `sorry` 的 Lean 源码，输出是自然语言证明，上游使用 LLM rubric 评分。Lean 文件只作为文本读取；不用安装 Lean、Mathlib、`lean-interact` 或任何 Python 第三方包。`bootstrap.sh` 不启动 Codex/Claude，也不需要 API Key。
-
-从本 README 所在目录执行：
-
-```bash
-bash bootstrap.sh
-```
-
-`bootstrap.sh` 在上游目录不存在时克隆 `zirui-HIT/FormalTCS`，并检出 `upstream.rev` 锁定的提交；已有 checkout 只校验，不改写。默认使用 `python3`，也可设 `FORMALTCS_PYTHON`；更换已有 venv 的解释器前先移走 `.local/venv/`。虚拟环境、离线验证报告和临时文件均在 `.local/`，不需要激活 venv。Docker 镜像由 Docker 单独管理。`runs/`、`dependencies/`、本地环境和密钥文件均不提交。
-
-构建成功会输出 `.local/c2np-smoke.json`：用上游数据读取器检查全部 143 个题目，再取一题验证模型侧只收到任务说明、自然语言定理和 Lean 定理。读取 `output/nl_proof.md` 的测试占位文本后，用模拟的评分响应验证上游 rubric 的四维加权；这不是模型结果，也不验证线上接口。构建只直接调用上游的任务和评分模块作为兼容性校验，不启动其评测 CLI；该 CLI 的通用配置仍会要求 `LEAN_ROOT`。
 
 ## Claude Code 单题运行
 

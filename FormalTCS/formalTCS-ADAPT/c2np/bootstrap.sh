@@ -15,22 +15,11 @@ die() {
 }
 
 "$python" -I -B -c 'import sys; sys.exit(sys.version_info < (3, 10))' || die 'Python 3.10+ is required.'
-if [[ ! -e "$upstream" && ! -L "$upstream" ]]; then
-  checkout="$(mktemp -d "$root/.upstream-XXXXXX")"
-  trap 'rm -rf -- "$checkout"' EXIT
-  git clone --no-checkout https://github.com/zirui-HIT/FormalTCS.git "$checkout/FormalTCS"
-  git -C "$checkout/FormalTCS" checkout --detach "$expected"
-  mv -T -- "$checkout/FormalTCS" "$upstream"
-fi
-[[ -e "$upstream/.git" ]] || die 'Expected an upstream FormalTCS checkout; see README.md.'
-actual="$(git -C "$upstream" rev-parse HEAD)"
-[[ "$actual" == "$expected" ]] || die "Expected upstream $expected, got $actual; see README.md."
-changes="$(git -C "$upstream" status --porcelain --untracked-files=normal)"
-[[ -z "$changes" ]] || die 'Upstream checkout is not clean; the bootstrap will not modify it.'
+[[ -f "$upstream/benchmark/collection.json" && -f "$upstream/evaluate/prompts/c2np.md" ]] || \
+  die 'Missing vendored FormalTCS files; restore them from the MathEval checkout.'
 
-mkdir -p -- "$local_root/tmp"
-export TMPDIR="$local_root/tmp"
 if [[ ! -x "$venv/bin/python" ]]; then
   "$python" -I -B -m venv --without-pip "$venv"
 fi
-"$venv/bin/python" -I -B "$adapt/smoke_c2np.py" "$upstream" "$local_root" "$actual"
+printf 'FormalTCS source: %s (upstream snapshot %s)\n' "$upstream" "$expected"
+printf 'Python environment: %s (%s)\n' "$venv" "$("$venv/bin/python" -I -B --version)"
