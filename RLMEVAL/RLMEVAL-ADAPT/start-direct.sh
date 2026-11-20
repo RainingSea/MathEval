@@ -6,9 +6,9 @@ repo="$adapt/../RLMEval"
 # 宿主机裸模型，支持非空同名环境变量覆盖。
 declare -A defaults=(
   [MODEL]="deepseek-v4.1-flash"
-  [OPENAI_BASE_URL]="https://token.pjlab.org.cn/v1"
+  [OPENAI_BASE_URL]="https://api.tensoris.ai/v1"
   [OPENAI_API_KEY]=""
-  [INDICES]="all"
+  [INDICES]="200"
   [SAMPLES]=1                 # 每题采样次数 k
   [CONCURRENCY]=1             # 同时生成的样本数
   [TMO]=21600                 # 单次 API 请求的超时秒数
@@ -24,7 +24,7 @@ for setting in "${!defaults[@]}"; do
 done
 
 python=${PYTHON_BIN:-python3}
-if [[ -z ${PYTHON_BIN:-} && -z ${VIRTUAL_ENV:-} && -z ${CONDA_PREFIX:-} && -x /root/miniconda3/envs/rlmeval/bin/python ]]; then
+if [[ -z ${PYTHON_BIN:-} && -z ${VIRTUAL_ENV:-} && ( -z ${CONDA_PREFIX:-} || ${CONDA_DEFAULT_ENV:-} == base ) && -x /root/miniconda3/envs/rlmeval/bin/python ]]; then
   python=/root/miniconda3/envs/rlmeval/bin/python
 fi
 dataset=${DATASET:-"$RLMEVAL_DEPS/dataset.jsonl"}

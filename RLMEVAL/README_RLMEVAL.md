@@ -34,7 +34,7 @@ docker pull python:3.12-slim-bookworm
 
 第一步在随附的 PFR 和 TLB 源码目录中分别执行 `lake exe cache get` 和 `lake build`，获取锁定版本的 Mathlib 缓存并编译项目。第二步根据逐题清单校验项目模块，以硬链接生成每题的 `lib/`，并写出含本机评分路径的 `dataset.jsonl`。
 
-从源码构建的镜像是 `rlmeval-native:light`。启动器从 `RLMEVAL_DEPS` 只读挂载本题对应的 Lean 工具链，并在该依赖盘上用临时硬链接汇集公共包的 .olean；每个容器仍只挂载一份单题输入。临时目录在本批次结束后清理。默认优先选择轻量镜像；只有旧发布包时自动使用 `rlmeval-native:portable`，也可通过 `RLMEVAL_DOCKER_IMAGE` 明确选择。轻量镜像实测约 1.79 GB（未压缩）。PFR 第 10 题和 TLB 第 174 题均通过离线编译预检；GLM-5.3 分别通过 Codex 和 Claude Code 生成的第 174 题候选均通过宿主机评分。换终端时，请重新导出该目录的绝对路径和 `PYTHON_BIN`。
+从源码构建的镜像是 `rlmeval-native:light`。启动器从 `RLMEVAL_DEPS` 只读挂载本题对应的 Lean 工具链，并在该依赖盘上用临时硬链接汇集公共包的 .olean；每个容器仍只挂载一份单题输入。临时目录在本批次结束后清理。可通过 `RLMEVAL_DOCKER_IMAGE=rlmeval-native:light` 显式选择轻量镜像。轻量镜像实测约 1.79 GB（未压缩）。PFR 第 10 题和 TLB 第 174 题均通过离线编译预检；GLM-5.3 分别通过 Codex 和 Claude Code 生成的第 174 题候选均通过宿主机评分。换终端时，请重新导出该目录的绝对路径和 `PYTHON_BIN`。
 
 ## 生成方式与采样配置
 
@@ -83,24 +83,33 @@ export MODEL OPENAI_BASE_URL OPENAI_API_KEY
 
 首次评分时，宿主机上的 lean-interact 需要获取与 Lean 版本匹配的 REPL，或使用预先准备的缓存。
 
-## 快速开始：使用预构建发布包
+## 快速开始：从对象存储获取依赖，构建轻量镜像
 
-从 GitHub 克隆本仓库，获取代码、题库和启动脚本。选择与仓库版本对应的两个预构建压缩包，并行下载到同一目录。
+代码和题库从 GitHub 获取。已编译的 Elan、Lean、PFR/TLB 和 Mathlib 已上传至 PJLab HDD2 对象存储的 `s3://agentsft1/MathEval_yrh/rlmeval-dependencies.tar.gz`（约 4.8 GiB）。使用这份依赖包即可跳过下载和编译 Mathlib。生成端使用轻量镜像 `rlmeval-native:light`。
 
-| 文件 | 用途 | 下载地址 |
-|---|---|---|
-| `rlmeval-images.tar.gz` | 当前发布包包含内置 Lean 和公共库的 rlmeval-native:portable，以及模型 API 代理镜像。要使用轻量版，请按上文从源码构建。 | |
-| `rlmeval-dependencies.tar.gz` | 宿主机使用的 Lean 工具链、PFR/TLB 项目和已编译的 Mathlib，用于准备逐题依赖和评分。 | |
-
-在克隆的仓库中进入本 README 所在的目录，执行前文的[宿主机 Python 环境](#宿主机-python-环境)命令。在同一终端中，将 `DIST` 设为两个压缩包的下载目录，加载镜像并准备逐题输入：
+在具有桶读取权限并能访问 HDD2 的环境中配置 AWS CLI 凭据。从本 README 所在目录执行：
 
 ```bash
-export DIST="$HOME/Downloads"  # 按实际下载位置修改
-docker load -i "$DIST/rlmeval-images.tar.gz"
+export DIST="$HOME/Downloads/rlmeval"
+mkdir -p "$DIST"
+endpoint=http://hdd2.h.pjlab.org.cn:8060
+prefix=s3://agentsft1/MathEval_yrh
+for file in rlmeval-dependencies.tar.gz rlmeval-dependencies.tar.gz.sha256; do
+  aws --endpoint-url "$endpoint" s3 cp "$prefix/$file" "$DIST/$file"
+done
+(cd "$DIST" && sha256sum -c rlmeval-dependencies.tar.gz.sha256)
+```
+
+校验通过后，在同一终端完成前文的宿主机 Python 环境配置，并准备好「从源码构建」中列出的 Codex 和 Claude Code 可执行文件。将依赖解压到空目录，生成逐题输入，并构建只包含 harness 和运行代码的镜像：
+
+```bash
 export RLMEVAL_DEPS="$PWD/dependencies"
 mkdir -p "$RLMEVAL_DEPS"
 tar -xzf "$DIST/rlmeval-dependencies.tar.gz" -C "$RLMEVAL_DEPS"
 "$PYTHON_BIN" RLMEVAL-ADAPT/build/prepare.py --deps "$RLMEVAL_DEPS"
+export RLMEVAL_DOCKER_IMAGE=rlmeval-native:light
+docker pull python:3.12-slim-bookworm
+./RLMEVAL-ADAPT/docker/build.sh
 ```
 
-准备完成后直接进入[预检与正式评测](#预检与正式评测)。预构建包省去了下载和编译 Mathlib、安装容器内的 harness，以及制作 Docker 镜像的时间。
+接下来按[预检与正式评测](#预检与正式评测)运行。同一对象存储目录此前上传的 `rlmeval-images.tar.gz` 是旧版 `portable` 镜像归档；上述轻量流程只下载依赖包及其校验文件。
