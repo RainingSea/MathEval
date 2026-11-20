@@ -8,6 +8,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import tempfile
 import time
 from urllib.parse import urlsplit
 from urllib.request import getproxies, proxy_bypass_environment
@@ -38,7 +39,32 @@ def prepare_output(path):
         raise ValueError("Run as root or UID 1000 so the benchmark user can write the output mount")
 
 
-def run_task(item, bundle, run, image, network, proxy, settings, prepare_only):
+def lean_mounts(deps, repo, stage):
+    project = deps / "projects" / repo
+    manifest = project / "lean-toolchain"
+    spec = manifest.read_text().strip()
+    if not re.fullmatch(r"leanprover/lean4:v[0-9A-Za-z.+-]+", spec):
+        raise ValueError(f"Unexpected toolchain: {spec}")
+    version = spec.replace("/", "--").replace(":", "---")
+    toolchain = deps / "elan/toolchains" / version
+    if not (toolchain / "bin/lean").is_file():
+        raise FileNotFoundError(toolchain / "bin/lean")
+    shared = stage / repo
+    lib = shared / "lib"
+    lib.mkdir(parents=True)
+    os.link(manifest, shared / "lean-toolchain")
+    for package in sorted((project / ".lake/packages").glob("*/.lake/build/lib")):
+        for source in package.rglob("*.olean"):
+            target = lib / source.relative_to(package)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            os.link(source.resolve(), target)
+    if not (lib / "Mathlib.olean").is_file():
+        raise FileNotFoundError(lib / "Mathlib.olean")
+    return ["--mount", f"type=bind,src={toolchain.resolve()},dst=/opt/elan/toolchains/{version},readonly",
+            "--mount", f"type=bind,src={shared},dst=/opt/rlm/envs/{repo},readonly"]
+
+
+def run_task(item, bundle, run, image, network, proxy, settings, prepare_only, mounts):
     case = run / "tasks" / str(item.index)
     case.mkdir()
     row = item.to_row()
@@ -55,6 +81,7 @@ def run_task(item, bundle, run, image, network, proxy, settings, prepare_only):
                "--mount", f"type=bind,src={bundle},dst=/input/task,readonly",
                "--mount", f"type=bind,src={item_file},dst=/input/item.jsonl,readonly",
                "--mount", f"type=bind,src={output},dst=/output"]
+    command.extend(mounts)
     for path, size in (("/workspace", "1g"), ("/cache_dir", "512m"),
                        ("/home/benchmark", "512m"), ("/tmp", "512m")):
         command += ["--tmpfs", f"{path}:rw,uid=1000,gid=1000,mode=0700,size={size}"]
@@ -172,8 +199,12 @@ def main():
     indices = parse_indices(os.environ.get("INDICES", "166,174"), available)
     if not indices:
         parser.error("Select at least one task index")
-    image = os.environ.get("RLMEVAL_DOCKER_IMAGE", "rlmeval-native:portable")
-    docker("image", "inspect", image, stdout=subprocess.DEVNULL)
+    image = os.environ.get("RLMEVAL_DOCKER_IMAGE") or "rlmeval-native:light"
+    if "RLMEVAL_DOCKER_IMAGE" not in os.environ and subprocess.run(
+            ["docker", "image", "inspect", image], capture_output=True).returncode:
+        image = "rlmeval-native:portable"
+    labels = json.loads(docker("image", "inspect", image, capture_output=True,
+                               text=True).stdout)[0]["Config"].get("Labels") or {}
     run_id = os.environ.get("RUN_ID", f"docker-{backend}-{uuid.uuid4().hex[:12]}")
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", run_id):
         parser.error("Invalid RUN_ID")
@@ -187,7 +218,14 @@ def main():
     proxy = f"rlmeval-proxy-{suffix}"
     networks = []
     proxy_url = None
+    deps = Path(os.environ["RLMEVAL_DEPS"]).resolve()
+    stage = None
+    mounts = {}
     try:
+        if labels.get("org.matheval.lean-mounts") == "1":
+            stage = tempfile.TemporaryDirectory(prefix=".rlmeval-libs-", dir=deps)
+            for repo in sorted({items[index].repo.lower() for index in indices}):
+                mounts[repo] = lean_mounts(deps, repo, Path(stage.name))
         if not args.prepare_only:
             docker("network", "create", "--internal", "--opt",
                    "com.docker.network.bridge.gateway_mode_ipv4=isolated", network, stdout=subprocess.DEVNULL)
@@ -223,10 +261,12 @@ def main():
             proxy_url = f"http://{IPv4Address(address)}:18080"
         with ThreadPoolExecutor(max_workers=concurrency) as executor:
             futures = [executor.submit(run_task, items[index], bundles[index], run, image, network,
-                                       proxy_url, settings, args.prepare_only)
+                                       proxy_url, settings, args.prepare_only, mounts.get(items[index].repo.lower(), []))
                        for index in indices]
             jobs = [(items[index], future.result()) for index, future in zip(indices, futures)]
     finally:
+        if stage:
+            stage.cleanup()
         if networks:
             subprocess.run(["docker", "rm", "-f", proxy], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             for name in reversed(networks):

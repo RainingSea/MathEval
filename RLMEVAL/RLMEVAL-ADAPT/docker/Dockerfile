@@ -4,8 +4,7 @@ RUN --mount=type=bind,source=wheels,target=/wheels \
     && useradd --uid 1000 --create-home benchmark \
     && mkdir /workspace /cache_dir \
     && chown benchmark:benchmark /workspace /cache_dir
-COPY toolchains/ /opt/elan/toolchains/
-COPY envs/ /opt/rlm/envs/
+LABEL org.matheval.lean-mounts="1"
 COPY codex/bin/ /usr/local/bin/
 COPY codex/codex-path/ /usr/local/bin/
 COPY claude /usr/local/bin/claude

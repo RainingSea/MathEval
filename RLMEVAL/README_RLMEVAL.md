@@ -2,6 +2,8 @@
 
 使用 Codex 或 Claude Code 在独立的 Docker 容器中逐题生成 Lean 证明，随后由宿主机编译候选证明并汇总评分。原始题库随代码提供，位于 [RLMEval/data/rlm25_pfr_tlb.jsonl](RLMEval/data/rlm25_pfr_tlb.jsonl)。
 
+![RLMEval 流程：逐题容器或裸模型生成候选，由宿主机 Lean 评分并统计逐题 pass@k](pipeline.png)
+
 首次使用请准备 Linux x86-64、可运行容器的 Docker 和 Python 3.11。以下依次介绍宿主机环境配置、从源码构建和正式评测。已有预构建发布包的用户可直接阅读文末的快速开始。
 
 ## 宿主机 Python 环境
@@ -30,7 +32,9 @@ docker pull python:3.12-slim-bookworm
 ./RLMEVAL-ADAPT/docker/build.sh
 ```
 
-第一步在随附的 PFR 和 TLB 源码目录中分别执行 `lake exe cache get` 和 `lake build`，获取锁定版本的 Mathlib 缓存并编译项目。第二步根据逐题清单校验项目模块，以硬链接生成每题的 `lib/`，并写出含本机评分路径的 `dataset.jsonl`。镜像构建和后面的启动器都自动读取已导出的 `RLMEVAL_DEPS`。换终端时，请重新导出该目录的绝对路径和 `PYTHON_BIN`。
+第一步在随附的 PFR 和 TLB 源码目录中分别执行 `lake exe cache get` 和 `lake build`，获取锁定版本的 Mathlib 缓存并编译项目。第二步根据逐题清单校验项目模块，以硬链接生成每题的 `lib/`，并写出含本机评分路径的 `dataset.jsonl`。
+
+从源码构建的镜像是 `rlmeval-native:light`。启动器从 `RLMEVAL_DEPS` 只读挂载本题对应的 Lean 工具链，并在该依赖盘上用临时硬链接汇集公共包的 .olean；每个容器仍只挂载一份单题输入。临时目录在本批次结束后清理。默认优先选择轻量镜像；只有旧发布包时自动使用 `rlmeval-native:portable`，也可通过 `RLMEVAL_DOCKER_IMAGE` 明确选择。轻量镜像实测约 1.79 GB（未压缩）。PFR 第 10 题和 TLB 第 174 题均通过离线编译预检；GLM-5.3 分别通过 Codex 和 Claude Code 生成的第 174 题候选均通过宿主机评分。换终端时，请重新导出该目录的绝对路径和 `PYTHON_BIN`。
 
 ## 生成方式与采样配置
 
@@ -85,7 +89,7 @@ export MODEL OPENAI_BASE_URL OPENAI_API_KEY
 
 | 文件 | 用途 | 下载地址 |
 |---|---|---|
-| `rlmeval-images.tar.gz` | Docker 镜像。包含逐题生成环境（Codex、Claude Code、Lean）以及访问模型 API 所用的代理镜像。 | |
+| `rlmeval-images.tar.gz` | 当前发布包包含内置 Lean 和公共库的 rlmeval-native:portable，以及模型 API 代理镜像。要使用轻量版，请按上文从源码构建。 | |
 | `rlmeval-dependencies.tar.gz` | 宿主机使用的 Lean 工具链、PFR/TLB 项目和已编译的 Mathlib，用于准备逐题依赖和评分。 | |
 
 在克隆的仓库中进入本 README 所在的目录，执行前文的[宿主机 Python 环境](#宿主机-python-环境)命令。在同一终端中，将 `DIST` 设为两个压缩包的下载目录，加载镜像并准备逐题输入：
