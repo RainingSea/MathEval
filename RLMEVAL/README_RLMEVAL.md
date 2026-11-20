@@ -2,7 +2,7 @@
 
 使用 Codex 或 Claude Code 在独立的 Docker 容器中逐题生成 Lean 证明，随后由宿主机编译候选证明并汇总评分。原始题库随代码提供，位于 [RLMEval/data/rlm25_pfr_tlb.jsonl](RLMEval/data/rlm25_pfr_tlb.jsonl)。
 
-![RLMEval 流程：逐题容器或裸模型生成候选，由宿主机 Lean 评分并统计逐题 pass@k](pipeline.png)
+![轻量容器只读挂载 Lean、公共库和单题 PFR 或 TLB 模块，支持编译反馈；裸模型每个样本直接请求一次。两路候选统一使用宿主机完整项目库评分。](pipeline.png)
 
 首次使用请准备 Linux x86-64、可运行容器的 Docker 和 Python 3.11。以下依次介绍宿主机环境配置、从源码构建和正式评测。已有预构建发布包的用户可直接阅读文末的快速开始。
 
